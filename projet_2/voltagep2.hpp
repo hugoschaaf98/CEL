@@ -2,6 +2,8 @@
  *
  * Projet CEL, S4 ENIB 2018
  * SCHAAF HUGO
+ * 
+ * license : GPL2
  */
 
 #ifndef VOLTAGEP2_HPP
@@ -37,13 +39,6 @@ namespace cel{
 	uint32_t getTend(voltage &v);
 	uint32_t getPeriod(voltage &v);
 	bool getState(voltage &v);
-
-
-
 }// namespace cel
-
-
-
-
 
 #endif

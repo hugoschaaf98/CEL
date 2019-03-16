@@ -1,3 +1,14 @@
+/* projet 2 CEL S4 enib
+ * 
+ * Créer plusieurs signaux carrés déphasés
+ * codé avec le Q.
+ *
+ * Hugo Schaaf
+ * Enib S4-2018
+ * license : GPL2
+ */
+
+
 /* standard headers */
 #include <math.h>
 

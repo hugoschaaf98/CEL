@@ -2,54 +2,78 @@
 
   Sujet n°4 de CEL
 
+  Déterminer la valeur d'un condo
+  où d'une résistance.
+
+  c'est codé avec le Q...
+
   Schaaf - Soreil
 
 */
 
+//---- pins des leds ----
+//
 #define ledPinV 12
 #define ledPinJ 11
 #define ledPinR 10
 
-#define I1 9
 
+//---- pins des boutons ----
+// switch 1
+#define I1 9
+// pushbutton 1
 #define BP1 7
 
+//---- pin de mesure pour le test ----
 #define testPin 5
-#define vref 5. // reference voltage 5v
+
+//---- valeurs de référence -----
+#define vref 5. // tension de référence 5v
 #define resistRef 100000.
+#define TIMEOUT 5000000 // timeout de 5s en us
 
-#define TIMEOUT 5000000 // 5s timeout in us
 
+//---- etat des boutons ----
 bool buttonState = 0;
 bool i1State = 0;
 
+
+//-------------------------------------------------
+// Setup
+//
 void setup() {
 
-  // initialize LEDs as outputs:
+  // initialisation des pins des leds
   pinMode(ledPinV, OUTPUT);
   pinMode(ledPinJ, OUTPUT);
   pinMode(ledPinR, OUTPUT);
 
-  // initialize SWITCHes as inputs:
+  // initialisation des pins des boutons
   pinMode(I1, INPUT);
-
-  // intialize the pushbutton pin as an input:
   pinMode(BP1, INPUT);
 
-  // initialize test pin
+  // initialiser le pin de test
   pinMode(testPin, OUTPUT);
 
-  // initialize serial communication at 9600 bits per second:
+  // initialiser la communication série à 9600 baud
   Serial.begin(9600);
 
 }
 
+//------------------------------------------------
+// loop
+//
 void loop() {
+
+  // etat des boutons
+  // bouton poussoir
   buttonState = digitalRead(BP1);
+  // switch
   i1State = digitalRead(I1);
 
 
-
+  //---- test pour déterminer une valeur de résistance
+  //
   if (i1State == 1)
   {
     digitalWrite(testPin, HIGH);
@@ -64,7 +88,7 @@ void loop() {
 
       Serial.println("Test resistance");
 
-      // read the input on analog pin 0:
+      // lecteur de la tension
       int voltageValue = analogRead(A0);
 
       // Convert the analog reading (which goes from 0 - 1024) to a voltage (0 - 5V):
@@ -75,9 +99,10 @@ void loop() {
       
       Serial.println(String(resistValue)+" Ohms");
     }
-
-
   }
+
+  //---- test pour déterminer la valeur du condo
+  //
   if (i1State == 0)
   {
     digitalWrite(testPin, LOW);
